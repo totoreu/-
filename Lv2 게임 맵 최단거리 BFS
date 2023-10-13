@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+// 상 하 좌 우
+const int dx[] = { -1, 1, 0, 0 };
+const int dy[] = { 0, 0, -1, 1 };
+
+bool checkTurn(int x, int y, int n, int m) {
+    return x >= 0 && y >= 0 && x < n && y < m;
+}
+
+int solution(vector<vector<int>> maps) {
+    int answer = 0;
+    queue<pair<int, int>> q;
+    q.push({ 0,0 });
+    maps[0][0] = 2;
+
+    int n = maps.size();
+    int m = maps[0].size();
+
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+
+        for (int i = 0; i < 4; ++i) {
+            int dirX = x + dx[i];
+            int dirY = y + dy[i];
+            if (checkTurn(dirX, dirY, n, m) && maps[dirX][dirY] == 1) {
+                maps[dirX][dirY] = maps[x][y] + 1;
+                q.push({ dirX, dirY });
+            }
+        }
+    }
+    maps[n - 1][m - 1] += maps[n - 1][m - 1] > 1 ? -1 : -2;
+    return maps[n - 1][m - 1];
+}
+
+int main() {
+
+    vector<vector<int>> maps {
+        {1, 0, 1, 1, 1 },
+        { 1,0,1,0,1 },
+        { 1,0,1,1,1 },
+        { 1,1,1,0,1 },
+        { 0,0,0,0,1 }
+    };
+
+    cout << solution(maps);
+
+    return 0;
+}
