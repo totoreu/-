@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 
+// 참고 : https://ip99202.github.io/posts/%EC%9C%A0%EB%8B%88%EC%98%A8-%ED%8C%8C%EC%9D%B8%EB%93%9C(Union-Find)/
+
 using namespace std;
 
 vector<int> parent;
