@@ -41,10 +41,8 @@ int solution(int n, vector<vector<int>> computers) {
     for (int x = 0; x < n; ++x) {
         for (int y = 0; y < n; ++y) {
             if (!isUnion(x, y) && computers[x][y] == 1) {
-                if (find(x) != find(y)) {
-                    merge(x, y);
-                    result--;
-                }
+                merge(x, y);
+                result--;
             }
         }
     }
