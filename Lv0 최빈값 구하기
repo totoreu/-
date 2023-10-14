@@ -1,9 +1,10 @@
-#include <iostream>
 #include <vector>
 #include <map>
 #include <algorithm>
 
 using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120812
 
 map<int, int> m;
 
@@ -40,17 +41,3 @@ int solution(vector<int> array) {
     int n = findMax();
     return check(n) ? -1 : n;
 }
-
-int main() {
-    vector<int> array = {1,1,2,2};
-
-    cout << solution(array);
-
-    return 0;
-}
-
- /* 테스트 케이스
-    {1, 2, 3, 3, 3, 4};
-    {1, 1, 2, 2};
-    {1};
-*/
