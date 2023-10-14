@@ -1,0 +1,19 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// 참고 : https://school.programmers.co.kr/learn/courses/30/lessons/120887
+
+void find(int& count, int k, int n) {
+    for (auto& iter : to_string(n))
+        if (k == iter - '0')
+            count++;
+}
+
+int solution(int i, int j, int k) {
+    int count = 0;
+    for (int n = i; n <= j; ++n)
+        find(count, k, n);
+    return count;
+}
