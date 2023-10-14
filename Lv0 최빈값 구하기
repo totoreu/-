@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+map<int, int> m;
+
+void init(vector<int>& array) {
+    for (auto& iter : array) {
+        auto findIt = m.find(iter);
+        if (findIt == m.end())
+            m.insert({ iter, 1 });
+        else
+            findIt->second++;
+    }
+}
+
+int findMax() {
+    auto n = max_element(m.begin(), m.end(), 
+        [](const auto& x, const auto& y) {
+            return x.second < y.second;
+        });
+    return n->first;
+}
+
+bool check(int n) {
+    auto findIt = m.find(n);
+    int count = 0;
+    for (auto& iter : m) {
+        if (findIt->second == iter.second)
+            count++;
+    }
+    return count > 1;
+}
+
+int solution(vector<int> array) {
+    init(array);
+    int n = findMax();
+    return check(n) ? -1 : n;
+}
+
+int main() {
+    vector<int> array = {1,1,2,2};
+
+    cout << solution(array);
+
+    return 0;
+}
+
+ /* 테스트 케이스
+    {1, 2, 3, 3, 3, 4};
+    {1, 1, 2, 2};
+    {1};
+*/
