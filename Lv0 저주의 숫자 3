@@ -1,0 +1,20 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120871
+
+bool check3(int n) {
+    if (n % 3 == 0 || to_string(n).find('3') != string::npos)
+        return true;
+    return false;
+}
+
+int solution(int n) {
+    int answer = 0, num = 0;
+    while (num != n)
+        if (!check3(++answer))
+            num++;
+    return answer;
+}
