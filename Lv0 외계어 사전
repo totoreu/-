@@ -1,0 +1,20 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120869
+
+int solution(vector<string> spell, vector<string> dic) {
+    for (auto& word : dic) {
+        int num = 0;
+        for (auto& alphabet : spell) {
+            int n = count(word.begin(), word.end(), alphabet[0]);
+            if ( n == 1 )
+                num++;
+        }
+        if (num == word.size() && num == spell.size())
+            return 1;
+    }
+    return 2;
+}
