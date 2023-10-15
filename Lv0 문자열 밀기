@@ -1,0 +1,18 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120921
+
+int solution(string A, string B) {
+    if (A == B)
+        return 0;
+    for (int i = 0; i < B.size(); ++i) {
+        A.insert(0, 1, A[A.size() - 1]);
+        A.pop_back();
+        if (A == B)
+            return i + 1;
+    }
+    return -1;
+}
