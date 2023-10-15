@@ -1,0 +1,15 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120912
+
+int solution(vector<int> array) {
+    int answer = 0;
+    for (auto& num : array)
+        for (auto& n : to_string(num))
+            if (n == '7')
+                answer++;
+    return answer;
+}
