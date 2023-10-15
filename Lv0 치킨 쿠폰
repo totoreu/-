@@ -1,0 +1,18 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120884
+
+int iLikeChicken(int n) {
+    int chicken = n / 10;
+    int coupon = (n % 10) + chicken;
+    if (coupon < 10)
+        return chicken;
+    return chicken + iLikeChicken(coupon);
+}
+
+int solution(int chicken) {
+    return iLikeChicken(chicken);
+}
