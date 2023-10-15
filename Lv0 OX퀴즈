@@ -1,0 +1,31 @@
+#include <string>
+#include <vector>
+#include <sstream>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120907
+
+vector<string> solution(vector<string> quiz) {
+    vector<string> answer;
+    for (auto& q : quiz) {
+        stringstream ss(q);
+        string temp;
+        char ch = ' ';
+        vector<int> vNum;
+        while (ss >> temp) {
+            if (temp == "=")
+                continue;
+            if (temp == "+" || temp == "-" )
+                ch = temp[0];
+            else
+                vNum.push_back(stoi(temp));
+        }
+
+        if (ch == '+')
+            answer.push_back((vNum[2] == vNum[0] + vNum[1]) ? "O" : "X");
+        else
+            answer.push_back((vNum[2] == vNum[0] - vNum[1]) ? "O" : "X");
+    }
+    return answer;
+}
