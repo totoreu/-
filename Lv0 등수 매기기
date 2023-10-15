@@ -1,0 +1,31 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120882
+
+vector<int> solution(vector<vector<int>> score) {
+    vector<double> vScore;
+    for (auto& iter : score)
+        vScore.push_back(round((iter[0] + iter[1]) / 2.0));
+
+    vector<double> vTemp = vScore;
+    sort(vTemp.begin(), vTemp.end());
+    reverse(vTemp.begin(), vTemp.end());
+
+    int nRank = 1, tempScore = 0, tempRank = 0;
+    vector<int> answer(score.size());
+    for (int i = 0; i < score.size(); ++i, ++nRank) {
+        for (int j = 0; j < score.size(); ++j) {
+            if (vScore[j] == vTemp[i]) {
+                answer[j] = (vTemp[i] == tempScore) ? tempRank : nRank;
+                tempScore = vScore[j];
+                tempRank = j > 0 ? answer[j] : nRank;
+                vScore[j] = -1;
+                break;
+            }
+        }
+    }
+    return answer;
+}
