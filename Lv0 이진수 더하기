@@ -1,0 +1,35 @@
+#include <string>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120885
+
+int StringToInt(string str) {
+    int num = 0;
+    for (int i = 0; i < str.size(); ++i) {
+        if (str[i] == '1')
+            num++;
+        if(i < str.size() - 1)
+            num *= 2;
+    }
+    return num;
+}
+
+string IntToBinaryString(int num) {
+    string str;
+    while (num != 0) {
+        if (num % 2 == 0)
+            str.insert(str.begin(), '0');
+        else
+            str.insert(str.begin(), '1');
+        num /= 2;
+    }
+
+    return str.empty() ? "0" : str;
+}
+
+string solution(string bin1, string bin2) {
+    int num = StringToInt(bin1) + StringToInt(bin2);
+   
+    return IntToBinaryString(num);
+}
