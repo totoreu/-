@@ -6,7 +6,6 @@ using namespace std;
 // https://school.programmers.co.kr/learn/courses/30/lessons/120883
 
 string solution(vector<string> id_pw, vector<vector<string>> db) {
-    string answer = "";
     for (auto& iter : db)
         if (iter[0] == id_pw[0])
             return iter[1] == id_pw[1] ? "login" : "wrong pw";
