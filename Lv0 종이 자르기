@@ -1,0 +1,9 @@
+using namespace std;
+
+https://school.programmers.co.kr/learn/courses/30/lessons/120922
+
+int solution(int M, int N) {
+    int m = M - 1;
+    int n = M * (N - 1);
+    return m + n;
+}
