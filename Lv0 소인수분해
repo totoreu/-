@@ -1,0 +1,23 @@
+#include <vector>
+#include <set>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120852
+
+vector<int> solution(int n) {
+    set<int> s;
+    int i = 1;
+    while(++i < n) {
+        if (n % i == 0 ) {
+                s.insert(i);
+            n /= i;
+            i = 1;
+        }
+    }
+    s.insert(i);
+    vector<int> answer;
+    for (auto& iter : s)
+        answer.push_back(iter);
+    return answer;
+}
