@@ -1,0 +1,32 @@
+#include <vector>
+#include <map>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120880
+
+map<int, vector<int>> m;
+
+void init(vector<int> numlist, int n) {
+    for (auto& iter : numlist) {
+        int num = abs(n - iter);
+        auto findIt = m.find(num);
+        if (findIt != m.end()) {
+            if (m[num][0] < iter)
+                m[num].insert(m[num].begin(), iter);
+            else
+                m[num].push_back(iter);
+        }
+        else
+            m[num].push_back(iter);
+    }
+}
+
+vector<int> solution(vector<int> numlist, int n) {
+    vector<int> answer;
+    init(numlist, n);
+    for (auto& iter : m)
+        for (auto& num : iter.second)
+            answer.push_back(num);
+    return answer;
+}
