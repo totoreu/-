@@ -1,0 +1,15 @@
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120924
+
+int solution(vector<int> common) {
+    int size = common.size() - 1;
+    int num1 = common[1] - common[0];
+    int num2 = common[size] / common[size - 1];
+    if (common[size] == common[size - 1] + num1)
+        return common[size] + num1;
+    else 
+        return common[size] * num2;
+}
