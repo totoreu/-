@@ -1,0 +1,22 @@
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120923
+
+vector<int> solution(int num, int total) {
+    vector<int> answer;
+    int n = total / num;
+    while (true) {
+        vector<int> arr(num);
+        for (int i = 0; i < num; ++i)
+            arr[i] = n + i;
+        if (accumulate(arr.begin(), arr.end(), 0) == total) {
+            answer = arr;
+            break;
+        }
+        n--;
+    }
+    return answer;
+}
