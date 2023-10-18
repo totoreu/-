@@ -1,0 +1,27 @@
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120863
+
+string solution(string polynomial) {
+    stringstream ss(polynomial);
+    string str;
+    int x = 0, num = 0;
+    while (ss >> str) {
+        if (str != "+")
+            if (str.find('x') != string::npos)
+                x += str.size() > 1 ? stoi(str) : 1;
+            else
+                num += stoi(str);
+    }
+    string strX = x != 1 ? to_string(x) + "x" : "x";
+    string strN = to_string(num);
+    if (x == 0)
+        return strN;
+    else if (num == 0)
+        return strX;
+    else
+        return strX + " + " + strN;
+}
