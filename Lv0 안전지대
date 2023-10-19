@@ -1,0 +1,38 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120866
+
+const vector<int> dx{ -1, 0, 1, -1, 1, -1, 0, 1 };
+const vector<int> dy{ -1, -1, -1, 0, 0, 1, 1, 1 };
+
+bool isOutside(int x, int y, int n) {
+    return x >= 0 && y >= 0 && x < n && y < n;
+}
+
+void isWarning(vector<vector<int>>& board, int x, int y) {
+    int n = board.size();
+    for (int i = 0; i < dx.size(); ++i) {
+        int dirX = x + dx[i];
+        int dirY = y + dy[i];
+        if (isOutside(dirX, dirY, n) && board[dirX][dirY] == 0)
+            board[dirX][dirY] = 2;
+    }
+}
+
+void init(vector<vector<int>>& board) {
+    for (int x = 0; x < board.size(); ++x)
+        for (int y = 0; y < board[0].size(); ++y)
+            if (board[x][y] == 1)
+                isWarning(board, x, y);
+}
+
+int solution(vector<vector<int>> board) {
+    init(board);
+    int safeArea = 0;
+    for (auto& line : board)
+        safeArea += count(line.begin(), line.end(), 0);
+    return safeArea;
+}
