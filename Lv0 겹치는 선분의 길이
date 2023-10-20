@@ -1,0 +1,43 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120876
+
+void init(vector<pair<int, int>>& line, int x, int y) {
+    for (int i = x; i < y; ++i)
+        line.push_back({ i, i + 1 });
+}
+
+int solution(vector<vector<int>> lines) {
+    vector<vector<pair<int,int>>> vLine(3);
+    for(int i = 0; i < lines.size(); ++i)
+        init(vLine[i], lines[i][0], lines[i][1]);
+
+    int result = 0;
+    vector<int> arr;
+    for (auto& line : lines)
+        for (auto& n : line)
+            arr.push_back(n);
+
+    int nMin = *min_element(arr.begin(), arr.end());
+    int nMax = *max_element(arr.begin(), arr.end());
+
+    for (int i = nMin; i <= nMax; ++i) {
+        int count = 0;
+        for (auto& line : vLine) {
+            for (auto& n : line) {
+                if (n.first == i && n.second == i + 1) {
+                    count++;
+                    break;
+                }
+            }
+            if (count > 1) {
+                result++;
+                break;
+            }
+        }
+    }
+    return result;
+}
