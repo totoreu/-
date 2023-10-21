@@ -1,0 +1,18 @@
+#include <vector>
+#include <set>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/120875
+
+float tilt(int x1, int y1, int x2, int y2) {
+    return (float)(y2 - 1 * y1) / (float)(x2 - 1 * x1);
+}
+
+int solution(vector<vector<int>> dots) {
+    set<float> s;
+    for (int i = 0; i < dots.size(); ++i)
+        for (int j = i + 1; j < dots.size(); ++j)
+            s.insert(tilt(dots[i][0], dots[i][1], dots[j][0], dots[j][1]));
+    return s.size() < 6 ? 1 : 0;
+}
