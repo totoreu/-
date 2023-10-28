@@ -1,0 +1,26 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/86491
+
+int solution(vector<vector<int>> sizes) {
+    int answer = 0;
+    int FirstElem = 0;
+    int SecondElem = 0;
+    for (const auto& Array : sizes)
+    {
+        const auto [Min, Max] = minmax_element(begin(Array), end(Array));
+        if (FirstElem < *Min)
+        {
+            FirstElem = *Min;
+        }
+        if (SecondElem < *Max)
+        {
+            SecondElem = *Max;
+        }
+    }
+    return FirstElem * SecondElem;
+}
