@@ -1,0 +1,25 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/131705
+
+int solution(vector<int> number) {
+    int CountNum = 0;
+    for (int One = 0; One < number.size() - 2; ++One)
+    {
+        for (int Two = One + 1; Two < number.size() - 1; ++Two)
+        {
+            for (int Three = Two + 1; Three < number.size(); ++Three)
+            {
+                int Sum = number[One] + number[Two] + number[Three];
+                if (Sum == 0)
+                {
+                    CountNum++;
+                }
+            }  
+        }
+    }
+    return CountNum;
+}
