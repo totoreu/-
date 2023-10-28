@@ -1,0 +1,24 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/147355
+
+int solution(string t, string p) {
+    int CountNum = 0;
+    for (int Start = 0; Start <= t.size() - p.size(); ++Start)
+    {
+        string TempString;
+        int MaxIndex = Start + p.size();
+        for (int Index = Start; Index < MaxIndex; ++Index)
+        {
+            TempString += t[Index];
+        }
+        if (stoull(TempString) <= stoull(p))
+        {
+            CountNum++;
+        }
+    }
+    return CountNum;
+}
