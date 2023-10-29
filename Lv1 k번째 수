@@ -1,0 +1,24 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/42748
+
+vector<int> solution(vector<int> array, vector<vector<int>> commands) {
+    vector<int> ResultArray;
+    for (const auto& Elem : commands)
+    {
+        int Start = Elem[0] - 1;
+        int End = Elem[1];
+        int Target = Elem[2] - 1;
+
+        vector<int> TempArray(End - Start);
+
+        copy(array.begin() + Start, array.begin() + End, TempArray.begin());
+        sort(TempArray.begin(), TempArray.end());
+
+        ResultArray.emplace_back(TempArray[Target]);
+    }
+    return ResultArray;
+}
