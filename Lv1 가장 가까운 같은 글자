@@ -1,0 +1,27 @@
+#include <string>
+#include <vector>
+#include <deque>
+#include <algorithm>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/142086
+
+vector<int> solution(string s) {
+    vector<int> NumData;
+    deque<char> CharData;
+    for (const char& Ch : s)
+    {
+        auto FindIt = find(CharData.begin(), CharData.end(), Ch);
+        if (FindIt != CharData.end())
+        {
+            NumData.push_back(FindIt - CharData.begin() + 1);
+        }
+        else
+        {
+            NumData.push_back(-1);
+        }
+        CharData.emplace_front(Ch);
+    }
+    return NumData;
+}
