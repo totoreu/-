@@ -1,0 +1,29 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/12926
+
+string solution(string s, int n) {
+    string Str = "";
+    for (const auto& ch : s)
+    {
+        if (ch == ' ')
+        {
+            Str += ' ';
+            continue;
+        }
+        if (ch <= 'Z')
+        {
+            int Temp = ch + n;
+            Str += Temp <= 'Z' ? Temp : Temp - 26;
+        }
+        else if (ch <= 'z')
+        {
+            int Temp = ch + n;
+            Str += Temp <= 'z' ? Temp : Temp - 26;
+        }
+    }
+    return Str;
+}
